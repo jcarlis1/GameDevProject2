@@ -7,32 +7,32 @@ public class Gun : MonoBehaviour
     public float range = 100f;
     public float damage = 10f;
 
-    [Header("Crosshair Settings")]
-    public Transform crosshairTransform;
+    [Header("Laser Sight Settings")]
+    public LineRenderer laserLine;
     public Transform muzzlePoint;
-    public float defaultDistance = 10f;
-    public float crosshairSize = 0.05f; // Editable scale multiplier in Inspector
 
     [Header("Audio & Effects")]
     public AudioSource audioSource;
     public AudioClip shootSound;
     public ParticleSystem muzzleFlash;
 
-    private Camera mainCam;
-
     void Start()
     {
-        FindMainCamera();
-
         if (muzzlePoint == null)
         {
             muzzlePoint = transform;
+        }
+
+        // Auto-get LineRenderer if attached to same object
+        if (laserLine == null)
+        {
+            laserLine = GetComponent<LineRenderer>();
         }
     }
 
     void Update()
     {
-        UpdateGunCrosshair();
+        UpdateLaser();
 
         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
@@ -40,47 +40,24 @@ public class Gun : MonoBehaviour
         }
     }
 
-    void FindMainCamera()
+    void UpdateLaser()
     {
-        mainCam = Camera.main;
-        // Fallback if MainCamera tag is missing on camera object
-        if (mainCam == null)
-        {
-            mainCam = FindFirstObjectByType<Camera>();
-        }
-    }
+        if (laserLine == null || muzzlePoint == null) return;
 
-    void UpdateGunCrosshair()
-    {
-        if (crosshairTransform == null) return;
-        if (mainCam == null) FindMainCamera();
-        if (mainCam == null) return;
+        // Position 0 is always the gun barrel tip
+        laserLine.SetPosition(0, muzzlePoint.position);
 
         RaycastHit hit;
-        Vector3 targetPoint;
-        float distance;
-
-        // Cast ray from muzzle
         if (Physics.Raycast(muzzlePoint.position, muzzlePoint.forward, out hit, range))
         {
-            distance = hit.distance;
-            // Slightly pull towards camera to stop surface clipping
-            targetPoint = hit.point - (mainCam.transform.forward * 0.05f);
+            // Position 1 ends at the exact impact point
+            laserLine.SetPosition(1, hit.point);
         }
         else
         {
-            distance = defaultDistance;
-            targetPoint = muzzlePoint.position + (muzzlePoint.forward * defaultDistance);
+            // If aiming into open sky, extend laser out to max range
+            laserLine.SetPosition(1, muzzlePoint.position + (muzzlePoint.forward * range));
         }
-
-        crosshairTransform.position = targetPoint;
-
-        // Face the camera directly
-        crosshairTransform.rotation = mainCam.transform.rotation;
-
-        // Scale based on distance, preventing it from shrinking to 0
-        float finalScale = Mathf.Max(0.01f, distance * crosshairSize);
-        crosshairTransform.localScale = new Vector3(finalScale, finalScale, finalScale);
     }
 
     void Shoot()
