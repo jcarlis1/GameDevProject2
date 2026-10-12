@@ -5,18 +5,24 @@ public class FullNightCycle : MonoBehaviour
     [Header("Skybox Settings")]
     public Material skyboxMaterial;
     public float duskExposure = 1.0f;
-    public float nightExposure = 0.15f;
+    public float nightExposure = 0.2f;
 
-    [Header("Directional Light (Sun/Moon)")]
-    public Light mainLight;
-    public float duskLightIntensity = 0.8f;
-    public float nightLightIntensity = 0.05f;
-    public Color duskLightColor = new Color(1.0f, 0.6f, 0.4f);  // Warm dusk orange
-    public Color nightLightColor = new Color(0.1f, 0.15f, 0.3f); // Cold night blue
+    [Header("Sun Light (Fades Out)")]
+    public Light sunLight;
+    public float duskSunIntensity = 0.8f;
+    public Color duskSunColor = new Color(1.0f, 0.6f, 0.4f);  // Warm dusk orange
 
+    [Header("Moon Light (Fades In)")]
+    public Light moonLight;
+    public float nightMoonIntensity = 0.35f;                   // Higher value keeps scene readable
+    public Color nightMoonColor = new Color(0.4f, 0.6f, 1.0f); // Cold silvery blue
+
+    [Header("Ambient Lighting (Prevents Pitch Black Shadows)")]
+    public Color duskAmbientColor = new Color(0.35f, 0.3f, 0.3f);
+    public Color nightAmbientColor = new Color(0.08f, 0.12f, 0.22f); // Soft blue shadow fill
 
     [Header("Timing")]
-    public float transitionDuration = 30f; // Seconds from dusk to night
+    public float transitionDuration = 30f;
 
     private float timer = 0f;
 
@@ -27,28 +33,36 @@ public class FullNightCycle : MonoBehaviour
             timer += Time.deltaTime;
             float progress = Mathf.Clamp01(timer / transitionDuration);
 
-            // 1. Update Skybox Exposure
+            // 1. Skybox Exposure
             if (skyboxMaterial != null)
             {
-                float exposure = Mathf.Lerp(duskExposure, nightExposure, progress);
-                skyboxMaterial.SetFloat("_Exposure", exposure);
+                skyboxMaterial.SetFloat("_Exposure", Mathf.Lerp(duskExposure, nightExposure, progress));
             }
 
-            // 2. Update Directional Light
-            if (mainLight != null)
+            // 2. Fade Sun OUT
+            if (sunLight != null)
             {
-                mainLight.intensity = Mathf.Lerp(duskLightIntensity, nightLightIntensity, progress);
-                mainLight.color = Color.Lerp(duskLightColor, nightLightColor, progress);
+                sunLight.intensity = Mathf.Lerp(duskSunIntensity, 0f, progress);
+                sunLight.color = duskSunColor;
             }
 
-            // Force Unity to recalculate scene ambient reflections from the skybox
+            // 3. Fade Moon IN
+            if (moonLight != null)
+            {
+                moonLight.intensity = Mathf.Lerp(0f, nightMoonIntensity, progress);
+                moonLight.color = nightMoonColor;
+            }
+
+            // 4. Update Ambient Light Floor
+            RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
+            RenderSettings.ambientSkyColor = Color.Lerp(duskAmbientColor, nightAmbientColor, progress);
+
             DynamicGI.UpdateEnvironment();
         }
     }
 
     void OnDisable()
     {
-        // Revert material back to initial state when exiting Play mode
         if (skyboxMaterial != null)
         {
             skyboxMaterial.SetFloat("_Exposure", duskExposure);
