@@ -68,8 +68,19 @@ public class TrickOrTreater : MonoBehaviour
     // Triggered if stationary target object's collider has "Is Trigger" checked
     private void OnTriggerEnter(Collider other)
     {
-        if (currentState == MovementState.WalkingToTarget && other.CompareTag("StationaryTarget"))
+        // if (currentState == MovementState.WalkingToTarget && other.CompareTag("StationaryTarget"))
+        // {
+        //     currentState = MovementState.RunningBack;
+        // }
+        if (currentState == MovementState.WalkingToTarget && 
+            (other.CompareTag("StationaryTarget") || other.transform.root.CompareTag("StationaryTarget")))
         {
+            // Decrease candy count when reaching the target
+            if (CandyManager.Instance != null)
+            {
+                CandyManager.Instance.DecreaseCandy(1);
+            }
+
             currentState = MovementState.RunningBack;
         }
     }
@@ -82,24 +93,6 @@ public class TrickOrTreater : MonoBehaviour
             currentState = MovementState.RunningBack;
         }
     }
-    // private void OnTriggerEnter(Collider other)
-    // {
-    //     // Check if the collider or its parent/root has the tag
-    //     if (currentState == MovementState.WalkingToTarget && 
-    //     (other.CompareTag("StationaryTarget") || other.transform.root.CompareTag("StationaryTarget")))
-    //     {
-    //         Debug.Log(gameObject.name + " hit target! Turning around to run back.");
-    //         currentState = MovementState.RunningBack;
-    //     }
-    // }
+   
 
-    // private void OnCollisionEnter(Collision collision)
-    // {
-    //     if (currentState == MovementState.WalkingToTarget && 
-    //     (collision.gameObject.CompareTag("StationaryTarget") || collision.transform.root.CompareTag("StationaryTarget")))
-    //     {
-    //         Debug.Log(gameObject.name + " collided with target! Turning around to run back.");
-    //         currentState = MovementState.RunningBack;
-    //     }
-    // }
 }
