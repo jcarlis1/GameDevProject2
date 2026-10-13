@@ -343,6 +343,62 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1760092748274825251, guid: fffe0246312293b4ab5e8d767bcec7e4, type: 3}
   m_PrefabInstance: {fileID: 219191463}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &160408502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 160408505}
+  - component: {fileID: 160408503}
+  m_Layer: 0
+  m_Name: Kid_Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &160408503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160408502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 839b5680f33b8a844928d82f552bfbce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KidSpawner
+  kidPrefabs:
+  - {fileID: 3426146483806157543, guid: 810eccd8d23152e4e873f7c1a46a53bc, type: 3}
+  - {fileID: 2584641278423287903, guid: 580cc6b7383632745add7a1ee6560042, type: 3}
+  - {fileID: 1517480223028523657, guid: 3cea2669bc779f241917351acb11c350, type: 3}
+  - {fileID: 751762560753533063, guid: 94666c70f395f7a4fb367b07c0557373, type: 3}
+  stationaryTarget: {fileID: 199019828}
+  sideOffsetAmount: 2
+  minKidsPerGroup: 1
+  maxKidsPerGroup: 5
+  minDelayBetweenGroups: 4
+  maxDelayBetweenGroups: 8
+  timeBetweenKidsInGroup: 0.3
+--- !u!4 &160408505
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160408502}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.99999285, z: -0, w: 0.0037895055}
+  m_LocalPosition: {x: 1.527, y: -0.2512, z: 38.02}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 179.566, z: 0}
 --- !u!1001 &199019827
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -395,13 +451,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Candy_Container
       objectReference: {fileID: 0}
+    - target: {fileID: 4443008737139770456, guid: f06698c4652c4f4448d0040d9e33379e, type: 3}
+      propertyPath: m_TagString
+      value: StationaryTarget
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4443008737139770456, guid: f06698c4652c4f4448d0040d9e33379e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 199019830}
+      addedObject: {fileID: 199019833}
+    - targetCorrespondingSourceObject: {fileID: 4443008737139770456, guid: f06698c4652c4f4448d0040d9e33379e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 199019834}
   m_SourcePrefab: {fileID: 100100000, guid: f06698c4652c4f4448d0040d9e33379e, type: 3}
 --- !u!4 &199019828 stripped
 Transform:
@@ -413,8 +476,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4443008737139770456, guid: f06698c4652c4f4448d0040d9e33379e, type: 3}
   m_PrefabInstance: {fileID: 199019827}
   m_PrefabAsset: {fileID: 0}
---- !u!135 &199019830
-SphereCollider:
+--- !u!65 &199019833
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -428,12 +491,26 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.0036738508
-  m_Center: {x: 0, y: 0.00013461022, z: -0.0011198034}
+  m_Size: {x: 0.005850641, y: 0.005703953, z: 0.0073477016}
+  m_Center: {x: -0.0000000018626451, y: 0.00013461022, z: -0.0011198034}
+--- !u!114 &199019834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199019829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5091e7fd5209fb54ba781e7cec36797e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CounterStationaryObject
+  counter: 30
+  counterText: {fileID: 0}
 --- !u!1001 &204068815
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8411,3 +8488,4 @@ SceneRoots:
   - {fileID: 1538783471}
   - {fileID: 1388770159}
   - {fileID: 1800968075}
+  - {fileID: 160408505}
