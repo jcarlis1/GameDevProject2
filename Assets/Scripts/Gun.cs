@@ -84,20 +84,6 @@ public class Gun : MonoBehaviour
         }
     }
 
-    // void Shoot()
-    // {
-    //     Debug.Log("Shooting");
-
-    //     if (audioSource != null && shootSound != null)
-    //     {
-    //         audioSource.PlayOneShot(shootSound);
-    //     }
-
-    //     if (muzzleFlash != null)
-    //     {
-    //         muzzleFlash.Play();
-    //     }
-    // }
 
     void Shoot()
     {
