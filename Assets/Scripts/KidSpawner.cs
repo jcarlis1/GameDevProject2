@@ -19,8 +19,16 @@ public class KidSpawner : MonoBehaviour
     public float maxDelayBetweenGroups = 8.0f;
     public float timeBetweenKidsInGroup = 0.3f; // Small stagger so kids don't overlap
 
-    void Start()
+    private System.Collections.IEnumerator Start()
     {
+        // Wait one frame to ensure TutorialManager Awake() has completed
+        yield return null;
+        
+        if (TutorialManager.Instance != null)
+        {
+            TutorialManager.Instance.ShowKidMessage();
+        }
+        
         StartCoroutine(SpawnGroupRoutine());
     }
 

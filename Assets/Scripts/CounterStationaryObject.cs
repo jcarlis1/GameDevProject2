@@ -3,7 +3,7 @@ using TMPro; // Include if using TextMeshPro for the counter UI
 
 public class CounterStationaryObject : MonoBehaviour
 {
-    public int counter = 10;
+    public int counter = 30;
     public TMP_Text counterText; // Drag your UI text here
 
     void Start()

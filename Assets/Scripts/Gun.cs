@@ -102,6 +102,13 @@ public class Gun : MonoBehaviour
             // Spawn pumpkin at muzzle location
             GameObject pumpkin = Instantiate(pumpkinPrefab, muzzlePoint.position, muzzlePoint.rotation);
             
+            // Pass the Gun's damage value to the Pumpkin script
+            PumpkinBullet bulletScript = pumpkin.GetComponent<PumpkinBullet>();
+            if (bulletScript != null)
+            {
+                bulletScript.damage = damage; // Uses "public float damage = 10f;" from Gun.cs
+            }
+            
             // Push the pumpkin forward with physical force
             Rigidbody rb = pumpkin.GetComponent<Rigidbody>();
             if (rb != null)
