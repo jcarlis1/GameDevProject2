@@ -16,4 +16,27 @@ public class PumpkinBullet : MonoBehaviour
             Destroy(gameObject); // Destroy pumpkin on impact with skeleton
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // 1. Check for Ghost
+        Ghost ghost = other.GetComponentInParent<Ghost>();
+        if (ghost != null)
+        {
+            float damage = (Gun.Instance != null) ? Gun.Instance.damage : 1f;
+            ghost.TakeDamage(damage);
+            Destroy(gameObject); // Destroy the pumpkin bullet on hit
+            return;
+        }
+
+        // 2. Check for Skeleton
+        Skeleton skeleton = other.GetComponentInParent<Skeleton>();
+        if (skeleton != null)
+        {
+            float damage = (Gun.Instance != null) ? Gun.Instance.damage : 1f;
+            skeleton.TakeDamage(damage);
+            Destroy(gameObject); // Destroy the pumpkin bullet on hit
+            return;
+        }
+    }
 }

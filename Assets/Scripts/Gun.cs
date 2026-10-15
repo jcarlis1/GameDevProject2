@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class Gun : MonoBehaviour
 {
+    public static Gun Instance;
+
     [Header("Gun Settings")]
     public float damage = 1f;
     public float initialVelocity = 35f; // Speed of the bullet/arc (higher = flatter line)
@@ -22,6 +24,13 @@ public class Gun : MonoBehaviour
     public GameObject pumpkinPrefab; // Drag your Pumpkin Prefab here in the Inspector
     public float shootForce = 35f;   // Match this with initialVelocity for accurate arc
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
 
     void Start()
     {
@@ -84,6 +93,12 @@ public class Gun : MonoBehaviour
         }
     }
 
+    public void IncreaseDamage(float amount)
+    {
+        damage += amount;
+        Debug.Log("Gun damage upgraded! Current Damage: " + damage);
+    }
+
 
     void Shoot()
     {
@@ -106,7 +121,7 @@ public class Gun : MonoBehaviour
             PumpkinBullet bulletScript = pumpkin.GetComponent<PumpkinBullet>();
             if (bulletScript != null)
             {
-                bulletScript.damage = damage; // Uses "public float damage = 10f;" from Gun.cs
+                bulletScript.damage = damage; // Uses "public float damage = 1f;" from Gun.cs
             }
             
             // Push the pumpkin forward with physical force

@@ -25,6 +25,7 @@ public class TutorialManager : MonoBehaviour
     private bool hasShownRedEyeSkeletonMsg = false;
     private bool hasShownRefillMsg = false;
     private bool hasShownVictoryMsg = false;
+    private bool hasShownGhostMsg = false;
 
     private void Awake()
     {
@@ -108,12 +109,20 @@ public class TutorialManager : MonoBehaviour
         DisplayPopup("Beware! Red-Eyed Skeletons are invading! They sprint at high speed and take 5 hits to destroy!");
     }
 
+    public void ShowGhostMessage()
+    {
+        if (hasShownGhostMsg) return;
+        hasShownGhostMsg = true;
+
+        DisplayPopup("A spooky Ghost has appeared! It has 5 health and is drifting across the yard. Defeat it before it reaches the end point to permanently increase your Pumpkin Launcher damage by 1!");
+    }
+
     public void ShowRefillMessage()
     {
         if (hasShownRefillMsg) return;
         hasShownRefillMsg = true;
 
-        DisplayPopup("Your candy is running low! Walk over the glowing Orange Mat at the front door of your house to Refill off your bucket.");
+        DisplayPopup("Your candy is running low! Walk over the glowing/pulsing Orange and yellow Mat at the front door of your house to Refill off your bucket.");
     }
 
     private void ShowVictoryMessage()

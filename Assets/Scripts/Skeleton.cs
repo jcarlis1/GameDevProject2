@@ -20,10 +20,10 @@ public class Skeleton : MonoBehaviour
     private void Start()
     {
         animator = GetComponentInChildren<Animator>();
-        if (animator != null)
-        {
-            animator.Play("Walk");
-        }
+        // if (animator != null)
+        // {
+        //     animator.Play("Mini Simple Tribal Armature|Walk");
+        // }
     }
 
     // Called by SkeletonSpawner upon creation
