@@ -22,7 +22,7 @@ public class FullNightCycle : MonoBehaviour
     public Color nightAmbientColor = new Color(0.08f, 0.12f, 0.22f); // Soft blue shadow fill
 
     [Header("Timing")]
-    public float transitionDuration = 30f;
+    public float transitionDuration = 300f;
 
     private float timer = 0f;
 
