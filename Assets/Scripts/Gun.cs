@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class Gun : MonoBehaviour
 {
     [Header("Gun Settings")]
-    public float damage = 10f;
+    public float damage = 1f;
     public float initialVelocity = 35f; // Speed of the bullet/arc (higher = flatter line)
 
     [Header("Curved Laser Settings")]

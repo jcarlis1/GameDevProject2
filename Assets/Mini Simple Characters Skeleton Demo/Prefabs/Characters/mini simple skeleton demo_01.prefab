@@ -392,6 +392,7 @@ GameObject:
   - component: {fileID: 4985691113074979274}
   - component: {fileID: -8057095433463508704}
   - component: {fileID: -6024351426798385448}
+  - component: {fileID: 3896845548678754613}
   m_Layer: 0
   m_Name: mini simple skeleton demo_01
   m_TagString: Untagged
@@ -407,8 +408,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3136820629370392942}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: 0.09181332, z: -0, w: 0.99577624}
+  m_LocalPosition: {x: -0.0000030970841, y: 0, z: -0.000033589946}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -418,7 +419,7 @@ Transform:
   - {fileID: 4520212876220007657}
   - {fileID: 8409890627790545283}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 10.536, z: 0}
 --- !u!95 &4985691113074979274
 Animator:
   serializedVersion: 7
@@ -432,7 +433,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 69ce5dd747afb75488c00ed0f554f1d6, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -463,7 +464,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
@@ -491,6 +492,21 @@ CapsuleCollider:
   m_Height: 1.6111054
   m_Direction: 1
   m_Center: {x: 0, y: 0.7043965, z: 0}
+--- !u!114 &3896845548678754613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3136820629370392942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d011ab801938c864fa617c2d0957338d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Skeleton
+  maxHealth: 30
+  moveSpeed: 2
+  targetTransform: {fileID: 0}
 --- !u!1 &3190320679450232660
 GameObject:
   m_ObjectHideFlags: 0

@@ -268,7 +268,7 @@ Transform:
   m_GameObject: {fileID: 29046014}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.38, y: 0, z: 2.65}
+  m_LocalPosition: {x: -10.35, y: 0, z: 2.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3584,7 +3584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a795fe26300fa6f4cac1a5a1f42dbc81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gun
-  damage: 10
+  damage: 1
   initialVelocity: 35
   laserLine: {fileID: 1656982094}
   muzzlePoint: {fileID: 1656982093}
@@ -5496,7 +5496,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b2ab68a6ea03341af598926d2afdb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkeletonSpawner
-  skeletonPrefab: {fileID: 1696834749189059949, guid: 4a46e821c58b5cd42b14eaab6d197266, type: 3}
+  standardSkeletonPrefab: {fileID: 1696834749189059949, guid: 4a46e821c58b5cd42b14eaab6d197266, type: 3}
+  darkSkeletonPrefab: {fileID: 1845742921716089003, guid: 20818fda9cf85f94ca4d9803d50fb8d8, type: 3}
+  redEyeSkeletonPrefab: {fileID: 3136820629370392942, guid: 62dcba975a0bdfe47bef48ea43049412, type: 3}
   spawnPoints:
   - {fileID: 29046015}
   - {fileID: 391671112}
@@ -5507,6 +5509,8 @@ MonoBehaviour:
   candyTarget: {fileID: 199019828}
   initialDelay: 7
   spawnInterval: 4
+  darkSkeletonUnlockTime: 10
+  redEyeSkeletonUnlockTime: 20
 --- !u!4 &837925621
 Transform:
   m_ObjectHideFlags: 0
