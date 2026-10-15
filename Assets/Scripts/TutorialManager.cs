@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement; // Added for SceneManager.LoadScene
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class TutorialManager : MonoBehaviour
@@ -21,6 +21,8 @@ public class TutorialManager : MonoBehaviour
 
     private bool hasShownKidMsg = false;
     private bool hasShownSkeletonMsg = false;
+    private bool hasShownDarkSkeletonMsg = false;
+    private bool hasShownRedEyeSkeletonMsg = false;
     private bool hasShownRefillMsg = false;
     private bool hasShownVictoryMsg = false;
 
@@ -87,7 +89,23 @@ public class TutorialManager : MonoBehaviour
         if (hasShownSkeletonMsg) return;
         hasShownSkeletonMsg = true;
 
-        DisplayPopup("Skeletons started spawning! Shoot them with your pumpkin launcher before they reach your candy target!");
+        DisplayPopup("Skeletons with 3 health started spawning! Shoot them with your pumpkin launcher that currently does 1 damage before they reach your candy target!");
+    }
+
+    public void ShowDarkSkeletonMessage()
+    {
+        if (hasShownDarkSkeletonMsg) return;
+        hasShownDarkSkeletonMsg = true;
+
+        DisplayPopup("Faster Dark Skeletons have appeared! They move quicker and require 4 hits to defeat!");
+    }
+
+    public void ShowRedEyeSkeletonMessage()
+    {
+        if (hasShownRedEyeSkeletonMsg) return;
+        hasShownRedEyeSkeletonMsg = true;
+
+        DisplayPopup("Beware! Red-Eyed Skeletons are invading! They sprint at high speed and take 5 hits to destroy!");
     }
 
     public void ShowRefillMessage()

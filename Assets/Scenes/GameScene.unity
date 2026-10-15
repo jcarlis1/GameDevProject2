@@ -5508,9 +5508,11 @@ MonoBehaviour:
   - {fileID: 481594887}
   candyTarget: {fileID: 199019828}
   initialDelay: 7
-  spawnInterval: 4
-  darkSkeletonUnlockTime: 10
-  redEyeSkeletonUnlockTime: 20
+  initialSpawnInterval: 4
+  darkSpawnInterval: 2.5
+  redEyeSpawnInterval: 1.2
+  darkSkeletonUnlockTime: 90
+  redEyeSkeletonUnlockTime: 210
 --- !u!4 &837925621
 Transform:
   m_ObjectHideFlags: 0
