@@ -28,18 +28,18 @@ public class GhostSpawner : MonoBehaviour
         if (!spawnedFirstGhost && gameTimer >= firstGhostTime)
         {
             spawnedFirstGhost = true;
-            SpawnGhost();
+            SpawnFirstGhost();
         }
 
         // Spawn 2nd Ghost at 4 Minutes (240s)
         if (!spawnedSecondGhost && gameTimer >= secondGhostTime)
         {
             spawnedSecondGhost = true;
-            SpawnGhost();
+            SpawnSecondGhost();
         }
     }
 
-    private void SpawnGhost()
+    private void SpawnFirstGhost()
     {
         if (ghostPrefab == null || ghostSpawnPoint == null || ghostEndPoint == null) return;
 
@@ -56,7 +56,28 @@ public class GhostSpawner : MonoBehaviour
         // Show tutorial popup on first ghost spawn
         if (TutorialManager.Instance != null)
         {
-            TutorialManager.Instance.ShowGhostMessage();
+            TutorialManager.Instance.ShowFirstGhostMessage();
+        }
+    }
+
+        private void SpawnSecondGhost()
+    {
+        if (ghostPrefab == null || ghostSpawnPoint == null || ghostEndPoint == null) return;
+
+        // Spawn Ghost at start point
+        GameObject newGhost = Instantiate(ghostPrefab, ghostSpawnPoint.position, ghostSpawnPoint.rotation);
+
+        // Configure Ghost destination
+        Ghost ghostScript = newGhost.GetComponent<Ghost>();
+        if (ghostScript != null)
+        {
+            ghostScript.Initialize(ghostEndPoint);
+        }
+
+        // Show tutorial popup on first ghost spawn
+        if (TutorialManager.Instance != null)
+        {
+            TutorialManager.Instance.ShowSecondGhostMessage();
         }
     }
 }
