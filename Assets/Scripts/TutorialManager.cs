@@ -130,7 +130,7 @@ public class TutorialManager : MonoBehaviour
         if (hasShownRefillMsg) return;
         hasShownRefillMsg = true;
 
-        DisplayPopup("Your candy is running low! Walk over the glowing/pulsing Orange and yellow Mat at the front door of your house to Refill off your bucket.");
+        DisplayPopup("Your candy is running low! Walk over the glowing/pulsing Orange and Yellow Mat at the front door of your house to Refill off your bucket.");
     }
 
     private void ShowVictoryMessage()
